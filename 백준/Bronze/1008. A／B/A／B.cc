@@ -1,15 +1,14 @@
 #include <iostream>
 using namespace std;
 
-int main() {
-    double A, B;
-
+int main()
+{
+    int A, B;
     cin >> A >> B;
 
-    cout.precision(9);
     cout << fixed;
-    cout << A/B;
-    cout.unsetf(ios::fixed);
+    cout.precision(9);
+    cout << A/(double)B;
 
     return 0;
 }
