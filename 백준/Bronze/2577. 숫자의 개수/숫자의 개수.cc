@@ -11,77 +11,22 @@ void Int2stk(int num, stack<int>& s) {
     }
 }
 
-int main()
-{
+int main() {
     int A, B, C;
-    cin >> A;
-    cin >> B;
-    cin >> C;
-    stack<int> stk;
-    Int2stk(A*B*C, stk);
-    int zero = 0;
-    int one = 0;
-    int two = 0;
-    int three = 0;
-    int four = 0;
-    int five = 0;
-    int six = 0;
-    int seven = 0;
-    int eight = 0;
-    int nine = 0;
-    while(stk.empty() != 1) {
+    cin >> A >> B >> C;
+    int res = A*B*C;
+    stack<int> s;
+    Int2stk(res,s); // 정수 각 자릿수를 스택에 담는 함수
+    int count[10] = {}; // 자릿수 별 카운트를 담을 배열이다. 0~9까지 10개를 받는다.
 
-        if(stk.top() == 0) {
-            zero++;
-            stk.pop();
-        }
-        else if(stk.top() == 1) {
-            one++;
-            stk.pop();
-        }
-        else if(stk.top() == 2) {
-            two++;
-            stk.pop();
-        }
-        else if(stk.top() == 3) {
-            three++;
-            stk.pop();
-        }
-        else if(stk.top() == 4) {
-            four++;
-            stk.pop();
-        }
-        else if(stk.top() == 5) {
-            five++;
-            stk.pop();
-        }
-        else if(stk.top() == 6) {
-            six++;
-            stk.pop();
-        }
-        else if(stk.top() == 7) {
-            seven++;
-            stk.pop();
-        }
-        else if(stk.top() == 8) {
-            eight++;
-            stk.pop();
-        }
-        else {
-            nine++;
-            stk.pop();
-        }
+    while(!s.empty()) { // 스택이 비어있지 않다면, 맨 윗 요소를 확인하고 해당 숫자의 카운트를 올린다. 그러고 pop.
+        count[s.top()]++;
+        s.pop();
     }
-    cout << zero << endl;
-    cout << one << endl;
-    cout << two << endl;
-    cout << three << endl;
-    cout << four << endl;
-    cout << five << endl;
-    cout << six << endl;
-    cout << seven << endl;
-    cout << eight << endl;
-    cout << nine << endl;
+
+    for(int i = 0; i < 10; i++) {
+        cout << count[i] << endl;
+    }
 
     return 0;
 }
