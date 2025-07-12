@@ -6,12 +6,23 @@ int main() {
     cin.tie(0);
     int N;
     cin >> N;
-    string a, b;
-    for (int i = 0; i < N; i++) {
-        cin >> a >> b;
-        sort(a.begin(), a.end());
-        sort(b.begin(), b.end());
-        if (a == b) {
+    while (N--) {
+        int a[26] = {};
+        string s1, s2;
+        cin >> s1 >> s2;
+        for (auto c: s1) {
+            a[c-'a']++;
+        }
+        for (auto c: s2) {
+            a[c-'a']--;
+        }
+        bool isPossible = true;
+        for (auto n: a) {
+            if (n != 0) {
+                isPossible = false;
+            }
+        }
+        if (isPossible == true) {
             cout << "Possible" << '\n';
         }
         else {
