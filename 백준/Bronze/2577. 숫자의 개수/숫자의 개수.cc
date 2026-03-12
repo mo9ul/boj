@@ -1,25 +1,20 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
+
+int arr[10];
 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-
-    int A, B, C;
-    cin >> A >> B >> C;
-    int mul = A*B*C;
-    vector<int> digits;
-    string s = to_string(mul);
-    for (char c : s) {
-        digits.push_back(c - '0');
+    int a, b, c, num;
+    cin >> a >> b >> c;
+    num = a * b * c;
+    string num_str = to_string(num);
+    for (int i = 0; i < num_str.length(); i++) {
+        int idx = num_str[i] - '0';
+        arr[idx]++;
     }
-    int arr[10];
-    fill(arr, arr+10, 0);
-    for (int i : digits) {
-        arr[i]++;
+    for (int i = 0; i < 10; i++) {
+        cout << arr[i] << '\n';
     }
-    for (int j = 0; j < 10; j++) {
-        cout << arr[j] << '\n';
-    }
-
 }
