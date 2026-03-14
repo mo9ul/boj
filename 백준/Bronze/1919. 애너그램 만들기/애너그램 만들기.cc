@@ -1,29 +1,29 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
-int main() {
+int arr[26];
+
+int main()
+{
     ios::sync_with_stdio(0);
     cin.tie(0);
-    // 알파벳 배열 a[26] = {};
-    // cin s1,s2
-    // for(char c : s1) a[c - 'a']++;
-    // for(char c : s2) a[c - 'a']--;
-    // 이제 a 배열에서 0이 아닌 것들을 카운트에 더한다.
-    int a[26] = {};
-    string s1, s2;
-    cin >> s1;
-    cin >> s2;
-    for (char c: s1) {
-        a[c - 'a']++;
+
+    string a, b;
+    cin >> a >> b;
+
+    for (int i = 0; i < a.length(); i++)
+    {
+        arr[a[i] - 'a']++;
     }
-    for (char c: s2) {
-        a[c - 'a']--;
+    for (int i = 0; i < b.length(); i++)
+    {
+        arr[b[i] - 'a']--;
     }
-    int cnt = 0;
-    for (int i: a) {
-        if (i != 0) {
-            cnt += abs(i);
-        }
+    int ans = 0;
+    for (int i = 0; i < 26; i++)
+    {
+        ans += abs(arr[i]);
     }
-    cout << cnt;
+
+    cout << ans;
 }
