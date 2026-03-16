@@ -1,30 +1,34 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <stack>
 using namespace std;
 
-int main() {
+int main()
+{
     ios::sync_with_stdio(0);
     cin.tie(0);
-    
-    int K;
-    cin >> K;
 
+    int k, n;
+    cin >> k;
     stack<int> s;
-    for (int i = 0; i < K; i++) {
-        int n;
+    for (int i = 0; i < k; i++)
+    {
         cin >> n;
-        if (n != 0) {
-            s.push(n);
-        }
-        else {
+        if (n == 0)
+        {
             s.pop();
         }
+        else
+        {
+            s.push(n);
+        }
     }
 
-    int sum = 0;
-    while (!s.empty()) {
-        sum += s.top(); // 맨 윗 요소를 더하고
-        s.pop(); // 제거한다
+    int ans = 0;
+    while (!s.empty())
+    {
+        ans += s.top();
+        s.pop();
     }
 
-    cout << sum;
+    cout << ans;
 }
