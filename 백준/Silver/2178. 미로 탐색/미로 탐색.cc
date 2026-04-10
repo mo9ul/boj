@@ -1,46 +1,66 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <queue>
+#include <algorithm>
 using namespace std;
 
-#define X first
-#define Y second
+#define x first
+#define y second
 
-int n, m;
+// 상,하,좌,우
+int dx[4] = {0, 0, -1, 1};
+int dy[4] = {-1, 1, 0, 0};
+
+int dis[102][102]; // 거리를 저장
 int board[102][102];
-int dis[102][102];
-int dx[4] = {-1, 0, 1, 0};
-int dy[4] = {0, -1, 0, 1};
 
-int main() {
+int main()
+{
     ios::sync_with_stdio(0);
     cin.tie(0);
+
+    int n, m;
     cin >> n >> m;
-    pair<int, int> des = {n - 1, m - 1};
-    for (int i = 0; i < n; i++) {
-        string s;
-        cin >> s;
-        for (int j = 0; j < m; j++) {
-            board[i][j] = s[j] - '0';
-            dis[i][j] = -1;
+    string num;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> num;
+        for (int j = 0; j < m; j++)
+        {
+            if (num[j] == '1')
+            {
+                board[i][j] = 1;
+            }
         }
     }
+
+    // BFS 시작
     queue<pair<int, int>> q;
-    q.push({0,0});
+    q.push({0, 0});
     dis[0][0] = 1;
-    while (!q.empty()) {
+    while (!q.empty())
+    {
         pair<int, int> cur = q.front();
         q.pop();
-        for (int i = 0; i < 4; i++) {
-            int nx = cur.X + dx[i];
-            int ny = cur.Y + dy[i];
-            if (nx < 0 || nx >= n || ny < 0 || ny >= m) {
+        for (int dir = 0; dir < 4; dir++)
+        {
+            int nx = cur.x + dx[dir];
+            int ny = cur.y + dy[dir];
+
+            if (nx < 0 || nx >= n || ny < 0 || ny >= m)
+            {
                 continue;
             }
-            if (board[nx][ny] != 1 || dis[nx][ny] != -1) {
+            if (board[nx][ny] != 1 || dis[nx][ny] != 0)
+            {
                 continue;
             }
-            dis[nx][ny] = dis[cur.X][cur.Y] + 1;
-            q.push({nx, ny});
+            else
+            {
+                q.push({nx, ny});
+                dis[nx][ny] = dis[cur.x][cur.y] + 1;
+            }
         }
     }
-    cout << dis[des.X][des.Y];
+
+    cout << dis[n - 1][m - 1];
 }
